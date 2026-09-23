@@ -1,0 +1,12 @@
+# Core Agent & LLM
+langgraph
+langchain-openai
+pydantic
+
+# Environment & Cloud Secrets
+python-dotenv
+boto3
+
+# API & Streaming (Upcoming)
+fastapi
+uvicorn
