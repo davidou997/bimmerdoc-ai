@@ -9,7 +9,7 @@ def load_aws_secrets():
     it into the local environment variables at runtime.
     """
     secret_name = "bimmerdoc/openai-key"
-    region_name = "us-east-1" # Update to match your AWS region
+    region_name = "ca-central-1"
 
     # Create a Secrets Manager client
     session = boto3.session.Session()
