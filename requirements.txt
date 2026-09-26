@@ -5,7 +5,7 @@ pydantic
 
 # Environment & Cloud Secrets
 python-dotenv
-boto3
+boto3[crt]
 
 # API & Streaming (Upcoming)
 fastapi
