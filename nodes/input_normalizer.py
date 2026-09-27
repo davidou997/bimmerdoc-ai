@@ -1,11 +1,12 @@
-import os
 from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 from schemas import ExtractedEntities
 from state import AgentState
+from aws_secrets import load_aws_secrets
 
-# Load OPENAI_API_KEY from .env file
+# Load optional AWS configuration from .env, then fetch the API key.
 load_dotenv()
+load_aws_secrets()
 
 # Instantiate the model with zero temperature for deterministic outputs
 llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)

@@ -3,7 +3,9 @@ import operator
 from langchain_core.messages import BaseMessage
 
 class AgentState(TypedDict):
-    """Represents the state of an agent."""
+    """
+    Represents the state of an agent.
+    """
 
     # Input provided by client
     raw_input: str
