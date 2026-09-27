@@ -10,3 +10,6 @@ boto3[crt]
 # API & Streaming (Upcoming)
 fastapi
 uvicorn
+
+# Testing
+pytest
