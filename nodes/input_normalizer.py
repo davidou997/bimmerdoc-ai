@@ -4,12 +4,18 @@ from schemas import ExtractedEntities
 from state import AgentState
 from aws_secrets import load_aws_secrets
 
-# Load optional AWS configuration from .env, then fetch the API key.
-load_dotenv()
-load_aws_secrets()
+llm = None
 
-# Instantiate the model with zero temperature for deterministic outputs
-llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
+
+def _get_llm():
+    global llm
+
+    if llm is None:
+        load_dotenv()
+        load_aws_secrets()
+        llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
+
+    return llm
 
 def input_normalizer_node(state: AgentState) -> dict:
     """
@@ -19,7 +25,7 @@ def input_normalizer_node(state: AgentState) -> dict:
     raw_user_input = state.get("raw_input", "")
     
     # Bind Pydantic schema to force structured JSON extraction
-    structured_llm = llm.with_structured_output(ExtractedEntities)
+    structured_llm = _get_llm().with_structured_output(ExtractedEntities)
     
     extracted: ExtractedEntities = structured_llm.invoke(
         f"Extract diagnostic parameters from this driver query: {raw_user_input}"
